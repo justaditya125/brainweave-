@@ -3,6 +3,7 @@ services:
     name: notes-app-backend
     runtime: node
     plan: free
+    rootDir: backend
     buildCommand: npm install && npm run build
     startCommand: npm run render-start
     healthCheckPath: /health
