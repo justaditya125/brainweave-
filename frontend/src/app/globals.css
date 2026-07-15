@@ -1,0 +1,432 @@
+@import "tailwindcss";
+
+:root {
+  /* Action & Accent Colors */
+  --fill-primary: #3B82F6;
+  --fill-primary-hover: #2563EB;
+  --on-primary: #ffffff;
+  
+  --fill-accent: rgba(59, 130, 246, 0.08);
+  --on-accent: #3B82F6;
+
+  /* Surfaces (Light Mode) */
+  --surface-0: #fcfcfc; /* Canvas background */
+  --surface-1: #ffffff; /* Card / Section background */
+  --surface-2: #f3f4f6; /* Panels / Modals / Inputs */
+  --surface-hover: #f9fafb;
+
+  /* Text hierarchy (Light Mode) */
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+
+  /* Borders (Light Mode) */
+  --border: rgba(0, 0, 0, 0.08); /* 0.5px hairline */
+  --border-strong: rgba(0, 0, 0, 0.16);
+  --border-stronger: rgba(0, 0, 0, 0.24);
+
+  /* Danger states */
+  --fill-danger: #ef4444;
+  --bg-danger: rgba(239, 68, 68, 0.04);
+  --border-danger: rgba(239, 68, 68, 0.3);
+
+  /* Radius */
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+/* Dark Mode class override */
+.dark {
+  /* Surfaces (Dark Mode) */
+  --surface-0: #0a0e17; /* Canvas background */
+  --surface-1: #141c2a; /* Card / Section background */
+  --surface-2: #1e293b; /* Panels / Modals / Inputs */
+  --surface-hover: #1b2637;
+
+  /* Text hierarchy (Dark Mode) */
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  /* Borders (Dark Mode) */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-stronger: rgba(255, 255, 255, 0.24);
+
+  /* Danger states (Dark Mode) */
+  --bg-danger: rgba(239, 68, 68, 0.08);
+  --border-danger: rgba(239, 68, 68, 0.5);
+}
+
+@theme inline {
+  --color-fill-primary: var(--fill-primary);
+  --color-fill-primary-hover: var(--fill-primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-fill-accent: var(--fill-accent);
+  --color-on-accent: var(--on-accent);
+
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-border-custom: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-stronger: var(--border-stronger);
+
+  --color-fill-danger: var(--fill-danger);
+  --color-bg-danger: var(--bg-danger);
+  --color-border-danger: var(--border-danger);
+  
+  --radius-custom: var(--radius);
+  --radius-custom-lg: var(--radius-lg);
+}
+
+/* Base Body Style */
+body {
+  background-color: var(--surface-0);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+}
+
+/* Typography styles matching the 2-weight (400 and 500 only) design constraints */
+h1 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.body-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-small {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.text-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* 0.5px hairline border utility */
+.border-hairline {
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: var(--border);
+}
+
+.border-hairline-t {
+  border-top-width: 0.5px;
+  border-top-style: solid;
+  border-top-color: var(--border);
+}
+
+.border-hairline-b {
+  border-bottom-width: 0.5px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border);
+}
+
+.border-hairline-r {
+  border-right-width: 0.5px;
+  border-right-style: solid;
+  border-right-color: var(--border);
+}
+
+.border-hairline-l {
+  border-left-width: 0.5px;
+  border-left-style: solid;
+  border-left-color: var(--border);
+}
+
+/* Reusable buttons classes following button rules */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--fill-primary);
+  color: var(--on-primary);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--fill-primary-hover);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--text-primary);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  border: 0.5px solid var(--border-strong);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--surface-1);
+  border-color: var(--border-stronger);
+}
+
+.btn-secondary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--text-primary);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background-color: var(--surface-2);
+}
+
+.btn-ghost:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Custom form inputs styling */
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  border: 0.5px solid var(--border);
+  background-color: var(--surface-2);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--border-strong);
+  background-color: var(--surface-1);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Form input error state */
+.form-input-error {
+  border-color: var(--border-danger);
+  background-color: var(--bg-danger);
+}
+
+.form-input-error:focus {
+  border-color: var(--fill-danger);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+}
+
+/* Base Card component styles */
+.note-card {
+  background-color: var(--surface-1);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.note-card-compact {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.note-card-lifted {
+  border: 0.5px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+}
+
+/* Modal Open Transition animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+/* Skeleton Loading screen utilities */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse-custom {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Markdown Rendering styles */
+.markdown-preview h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+.markdown-preview h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+.markdown-preview h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+.markdown-preview p {
+  margin-bottom: 0.75rem;
+  line-height: 1.625;
+}
+.markdown-preview ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.markdown-preview ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.markdown-preview li {
+  margin-bottom: 0.25rem;
+}
+.markdown-preview strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.markdown-preview em {
+  font-style: italic;
+}
+.markdown-preview pre {
+  background-color: var(--surface-2);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0.5px solid var(--border);
+}
+.markdown-preview code {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.85em;
+  background-color: var(--surface-2);
+  padding: 0.125rem 0.25rem;
+  border-radius: 4px;
+  border: 0.5px solid var(--border);
+}
+.markdown-preview blockquote {
+  border-left: 3px solid #3B82F6;
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 1rem 0;
+}
+
+@keyframes shimmer-move {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+
